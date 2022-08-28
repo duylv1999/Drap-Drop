@@ -10,6 +10,15 @@ import { useEffect, useState } from 'react';
 const Container = styled.div`
   display:flex;
 `
+
+const ruleDnD = {
+  1: [4],
+  2: [3,1],
+  3: [1],
+  4: [2]
+}
+
+
 function App() {
   const [state, setState] = useState(initital)
   const [list, setList] = useState('')
@@ -64,6 +73,11 @@ function App() {
 
     const start = list.columns[source.droppableId]
     const finish = list.columns[destination.droppableId]
+
+    // check rule
+    if(!ruleDnD[source.droppableId].includes(finish.id)){
+      return;
+    }
 
     // Moving from one list to another
     const startTaskIds = Array.from(start.taskIds)
