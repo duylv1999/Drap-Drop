@@ -58,19 +58,11 @@ function App() {
     if (!destination) {
       return
     }
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return
-    }
     if (
       destination.droppableId === source.droppableId 
     ) {
       return
     }
-
     const start = list.columns[source.droppableId]
     const finish = list.columns[destination.droppableId]
 
@@ -86,8 +78,6 @@ function App() {
       ...start,
       taskIds: startTaskIds
     }
-
-
 
     const finishTaskIds = Array.from(finish.taskIds)
     finishTaskIds.splice(destination.index, 0, start.taskIds[source.index])
